@@ -137,13 +137,21 @@ alias tm="task modify"                                              # Modify a t
 alias tal="task all"                                                # List all task
 alias tdel="task delete"                                            # Delete a task
 alias tp="task purge"                                               # Purge a task
-alias tan="task annotate"                                           # Add an annotaion to a task
+alias tan="task annotate"                                           # Add an annotation to a task
 alias tden="task denotate"                                          # Remove an annotation from a task
 alias tcol="task colors legend"                                     # Show the legend of colours
 alias tcon="task config"                                            # Modify the taskrc from the command line
 ## Timewarrior
 alias tw="timew"                                                    # Shortcut for timew
 alias twsum="timew summary"                                         # Show a summary
+## Git
+alias gcom="git commit -m"                                          # Commit (enclose argument in "")
+alias gadd="git add ."                                              # Add all files in current directory
+alias gush="git push"                                               # Push
+alias gull="git pull"                                               # Pull
+alias gcln="git clone"                                              # Clone a repository
+alias gco="git checkout"                                            # Checkout a branch
+alias glog="git log"                                                # Show the log of commits
 ## NetworkManager (nmcli)
 ### INFO: to connect to a network that requires a redirect page,
 ### try 192.168.1.1 in the browser (most common default address)
