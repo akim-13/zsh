@@ -82,6 +82,7 @@ alias updm="pls reflector --protocol https --latest 30 --sort rate\
  --verbose --save /etc/pacman.d/mirrorlist"                         # Update the mirror list with reflector
 alias pp="prettyping"                                               # An alternative for ping
 alias pch="prettyping archlinux.org"                                # Check ping
+alias pdf="setsid zathura"                                          # Open a pdf file
 ## Fun
 alias nf="neofetch"                                                 # I use Arch btw
 alias pf="paleofetch"                                               # Neofetch alternative
@@ -147,11 +148,13 @@ alias twsum="timew summary"                                         # Show a sum
 ## Git
 alias gcom="git commit -m"                                          # Commit (enclose argument in "")
 alias gadd="git add ."                                              # Add all files in current directory
+alias gac="git add . && git commit -m"                              # Git add all files and write a commit message
 alias gush="git push"                                               # Push
 alias gull="git pull"                                               # Pull
 alias gcln="git clone"                                              # Clone a repository
 alias gco="git checkout"                                            # Checkout a branch
 alias glog="git log"                                                # Show the log of commits
+alias gdif="git diff"                                               # Compare changes
 ## NetworkManager (nmcli)
 ### INFO: to connect to a network that requires a redirect page,
 ### try 192.168.1.1 in the browser (most common default address)
@@ -172,7 +175,7 @@ alias lsr="lsd -AlhF --tree --depth=2 2>/dev/null"                  # List a tre
 alias lsg="ls | grep"                                               # List only files matching a given pattern
 alias c="clear"                                                     # Clear the screen
 alias g="grep"                                                      # Grep
-alias cd="source /usr/local/bin/cd"                                 # Run ls every time a directory is changes
+alias cd="source $HOME/.local/bin/cd"                                 # Run ls every time a directory is changes
 alias pd="pushd"                                                    # Push directory
 alias pop="popd"                                                    # Pop directoty
 alias rb="reboot"                                                   # Reboot
