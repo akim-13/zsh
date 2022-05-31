@@ -6,7 +6,7 @@ hcl
 # Clear the screen and flex each time zsh starts
 [[ "$(pwd)" == "$HOME" ]] &&
 echo &&
-paleofetch &&
+paleofetch --recache &&
 (echo -n "            Home : " && ls ~ -A | wc -l) | figlet | lolcat &&
 # colorscript -r &&
 # Let lsd calculate the folder sizes in the background
@@ -38,13 +38,12 @@ alias nts="cd ~/dox/nts"                                            # Notes
 alias cld="cd ~/dox/cloud"                                          # Nextcloud folder
 alias latex="cd ~/dox/latex"                                        # Latex notes
 alias eng="cd ~/dox/eng"                                            # English notes
-alias eco="cd ~/dox/eco"                                            # Economics notes
+alias econ="cd ~/dox/econ"                                          # Economics notes
 alias cs="cd ~/dox/cs"                                              # Computer Science notes
 alias epq="cd ~/dox/cs/epq"                                         # Extended Project Qualification
 alias bin="cd ~/rps/bin"                                            # My scripts
 alias df="cd ~/.config"                                             # Dotfiles
-alias m1="cd ~/tmp/mnt1"                                            # First mounting point
-alias m2="cd ~/tmp/mnt2"                                            # Second mounting point
+alias m1="cd ~/tmp/mnt"                                             # Mounting point
 alias cache="cd $XDG_CACHE_HOME"                                    # ~/.cache
 alias data="cd $XDG_DATA_HOME"                                      # ~/.local/share
 alias cnv="cd ~/.config/nvim/lua/rc"                                # Neovim config
@@ -170,8 +169,8 @@ alias alog="python3.10 ~/dox/cs/epq/activity.py"                    # Activity l
 alias pls="doas"                                                    # Execute a command as root
 alias cat="bat"                                                     # Fancier version of cat
 alias rm="trash"                                                    # Move a file to ~/tmp/trash instead of deleting it
-alias ls="lsd -AlhF 2>/dev/null"                                    # List files with fancier ls and hide any error messages
-alias lsr="lsd -AlhF --tree --depth=2 2>/dev/null"                  # List a tree of the given directory and its subdirectories
+alias ls="lsd -ALlhF 2>/dev/null"                                   # List files with fancier ls and hide any error messages
+alias lsr="lsd -ALlhF --tree --depth=2 2>/dev/null"                  # List a tree of the given directory and its subdirectories
 alias lsg="ls | grep"                                               # List only files matching a given pattern
 alias c="clear"                                                     # Clear the screen
 alias g="grep"                                                      # Grep
@@ -181,6 +180,8 @@ alias pop="popd"                                                    # Pop direct
 alias rb="reboot"                                                   # Reboot
 alias po="poweroff"                                                 # Turn off the computer
 alias sd="shutdown now"                                             # Turn off the computer
+alias usb="udisksctl mount -b /dev/sda1"                            # Mount usb
+alias uusb="udisksctl unmount -b /dev/sda1"                         # Unmount usb
 alias mnt="pls mount"                                               # Mount
 alias umnt="pls umount"                                             # Unmount
 alias sctl="doas systemctl"                                         # Run systemctl as root
