@@ -30,13 +30,14 @@ eval "$(ssh-agent -s)" 1>/dev/null
 # Quick cd
 alias tmp="cd ~/tmp"                                                # Temporary files
 alias pix="cd ~/pix"                                                # Pictures
+alias wp="cd ~/pix/wp"                                              # Wallpapers
 alias rps="cd ~/rps"                                                # Repositories
 alias dox="cd ~/dox"                                                # Documents
 alias src="cd ~/.cache/src"                                         # Cache
 alias dox="cd ~/dox"                                                # Documents
 alias nts="cd ~/dox/nts"                                            # Notes
-alias cld="cd ~/dox/cloud"                                          # Nextcloud folder
-alias latex="cd ~/dox/latex"                                        # Latex notes
+alias cld="cd ~/dox/cld"                                            # Nextcloud folder
+alias latex="cd ~/dox/ltx"                                          # Latex notes
 alias eng="cd ~/dox/eng"                                            # English notes
 alias econ="cd ~/dox/econ"                                          # Economics notes
 alias cs="cd ~/dox/cs"                                              # Computer Science notes
@@ -73,15 +74,18 @@ alias bt="bluetoothctl"                                             # Bluetoothc
 alias jbl="bluetoothctl -- connect B8:F6:53:E7:EC:77"               # Connect to the JBL Flip 5 speaker with bluetoothctl
 alias mkp="makepkg -si"                                             # Make package, resolve dependencies and install
 alias bup="borg create --stats --progress --compression=zstd,22\
- --exclude='~/tmp/mnt1'\
- --exclude='~/tmp/trash'\
- --exclude='~/pix/dji'\
- --exclude='~/.minecraft'"                                          # Make a backup with Borg (bup ~/tmp/mnt1/bups::Name ~)
+          --exclude='~/tmp/trash','~/.minecraft'"
 alias updm="pls reflector --protocol https --latest 30 --sort rate\
- --verbose --save /etc/pacman.d/mirrorlist"                         # Update the mirror list with reflector
+           --verbose --save /etc/pacman.d/mirrorlist"               # Update the mirror list with reflector
 alias pp="prettyping"                                               # An alternative for ping
 alias pch="prettyping archlinux.org"                                # Check ping
 alias pdf="setsid zathura"                                          # Open a pdf file
+## Wallpaper setter
+alias wpm="xwallpaper --maximize"                                   # Maximize wallpaper
+alias wpz="xwallpaper --zoom"                                       # Zoom wallpaper
+alias wpc="xwallpaper --center"                                     # Center wallpaper
+alias wps="xwallpaper --stretch"                                    # Stretch wallpaper
+alias wpt="xwallpaper --tile"                                       # Tile (repeat) wallpaper
 ## Fun
 alias nf="neofetch"                                                 # I use Arch btw
 alias pf="paleofetch"                                               # Neofetch alternative
@@ -108,7 +112,7 @@ alias hk="$EDITOR ~/.config/sxhkd/sxhkdrc"                          # Edit the h
 alias rhk="pkill sxhkd && sxhkd &"                                  # Restart the hotkey daemon
 ## DWM
 alias drc="pushd ~/.config/dwm && \
-    $EDITOR ~/.config/dwm/config.def.h"                             # Edit the DWM config file
+          $EDITOR ~/.config/dwm/config.def.h"                       # Edit the DWM config file
 alias dsrc="$EDITOR ~/.config/dwm/dwm.c"                            # Edit the DWM source code
 alias cdwm="cd ~/.config/dwm"                                       # Go to DWM config directory
 alias cmpd="\rm -f ~/.config/dwm/config.h && \rm \
@@ -169,12 +173,13 @@ alias alog="python3.10 ~/dox/cs/epq/activity.py"                    # Activity l
 alias pls="doas"                                                    # Execute a command as root
 alias cat="bat"                                                     # Fancier version of cat
 alias rm="trash"                                                    # Move a file to ~/tmp/trash instead of deleting it
+alias mkdir="mkdir -p"                                              # Create parent directories as needed
 alias ls="lsd -ALlhF 2>/dev/null"                                   # List files with fancier ls and hide any error messages
-alias lsr="lsd -ALlhF --tree --depth=2 2>/dev/null"                  # List a tree of the given directory and its subdirectories
+alias lsr="lsd -ALlhF --tree --depth=2 2>/dev/null"                 # List a tree of the given directory and its subdirectories
 alias lsg="ls | grep"                                               # List only files matching a given pattern
 alias c="clear"                                                     # Clear the screen
 alias g="grep"                                                      # Grep
-alias cd="source $HOME/.local/bin/cd"                                 # Run ls every time a directory is changes
+alias cd="source $HOME/.local/bin/cd"                               # Run ls every time a directory is changes
 alias pd="pushd"                                                    # Push directory
 alias pop="popd"                                                    # Pop directoty
 alias rb="reboot"                                                   # Reboot
@@ -210,7 +215,6 @@ alias pmr="doas pacman -Rs"                                         # Remove pac
 alias pmi="doas pacman -S"                                          # Install packages with pacman
 alias pmu="doas pacman -Syu"                                        # Update the system with pacman
 ## Paru
-alias paru="paru --bottomup --builddir ~/.cache/src"                # List packages from the AUR helper in reverse
 alias upaur="paru -Sua"                                             # Upgrade only AUR packages
 
 # XDG
