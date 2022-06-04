@@ -3,15 +3,14 @@
 ###########################
 # Script to remove unwanted folders in $HOME
 hcl
-# Clear the screen and flex each time zsh starts
-[[ "$(pwd)" == "$HOME" ]] &&
+# Clear the screen and flex each time ZSH starts
+[[ "$PWD" == "$HOME" ]] &&
 echo &&
 paleofetch --recache &&
-(echo -n "            Home : " && ls ~ -A | wc -l) | figlet | lolcat &&
+(echo -n "            Home : " && ls $HOME -A | wc -l) | figlet | lolcat &&
 # colorscript -r &&
 # Let lsd calculate the folder sizes in the background
 (lsd -AlhF >/dev/null 2>&1 &) &&
-
 # Enable the starship prompt
 eval "$(starship init zsh)"
 # Set a win title using the starship prompt
@@ -28,33 +27,41 @@ eval "$(ssh-agent -s)" 1>/dev/null
 ######### ALIASES #########
 ###########################
 # Quick cd
-alias tmp="cd ~/tmp"                                                # Temporary files
-alias pix="cd ~/pix"                                                # Pictures
-alias wp="cd ~/pix/wp"                                              # Wallpapers
-alias rps="cd ~/rps"                                                # Repositories
-alias dox="cd ~/dox"                                                # Documents
-alias src="cd ~/.cache/src"                                         # Cache
-alias dox="cd ~/dox"                                                # Documents
-alias nts="cd ~/dox/nts"                                            # Notes
-alias cld="cd ~/dox/cld"                                            # Nextcloud folder
-alias latex="cd ~/dox/ltx"                                          # Latex notes
-alias eng="cd ~/dox/eng"                                            # English notes
-alias econ="cd ~/dox/econ"                                          # Economics notes
-alias cs="cd ~/dox/cs"                                              # Computer Science notes
-alias epq="cd ~/dox/cs/epq"                                         # Extended Project Qualification
-alias bin="cd ~/rps/bin"                                            # My scripts
-alias df="cd ~/.config"                                             # Dotfiles
-alias m1="cd ~/tmp/mnt"                                             # Mounting point
-alias cache="cd $XDG_CACHE_HOME"                                    # ~/.cache
-alias data="cd $XDG_DATA_HOME"                                      # ~/.local/share
-alias cnv="cd ~/.config/nvim/lua/rc"                                # Neovim config
+## pix
+alias pix="cd $MY_PIX"                                              # Pictures
+alias wp="cd $MY_WP"                                                # Wallpapers
+alias ss="cd $MY_SS"                                                # Screenshots
+## rps
+alias rps="cd $MY_RPS"                                              # Repositories
+alias bin="cd $MY_BIN"                                              # My scripts
+## tmp
+alias tmp="cd $MY_TMP"                                              # Temporary files
+alias m="cd $MY_MNT"                                                # Mounting point
+## dox
+alias dox="cd $MY_DOX"                                              # Documents
+alias nts="cd $MY_NTS"                                              # Notes
+alias cld="cd $MY_CLD"                                              # Nextcloud folder
+alias ltx="cd $MY_LTX"                                              # Latex notes
+alias eng="cd $MY_ENG"                                              # English notes
+### cs
+alias cs="cd $MY_CS"                                                # Computer Science notes
+alias epq="cd $MY_CS/epq"                                           # Extended Project Qualification
+alias econ="cd $MY_ECON"                                            # Economics notes
+## df
+alias df="cd $XDG_CONFIG_HOME"                                      # Dotfiles
+alias cnv="cd $XDG_CONFIG_HOME/nvim/lua/rc"                         # Neovim config
+alias cz="cd $XDG_CONFIG_HOME/zsh"                                  # ZSH configs
+## cache
+alias cache="cd $XDG_CACHE_HOME"                                    # $HOME/.cache
+alias src="cd $XDG_CACHE_HOME/src"                                  # Cache
+alias data="cd $XDG_DATA_HOME"                                      # $HOME/.local/share
 ## Vault
-alias vlt="cd ~/vlt"                                                # Vault
-alias ovlt="cryfs ~/tmp/crypt ~/vlt && cd ~/vlt"                    # Open and go into the vault
-alias uvlt="cryfs-unmount ~/vlt"                                    # Unmount (close) the vault
+alias vlt="cd $MY_VLT"                                              # Vault
+alias ovlt="cryfs $MY_TMP/crypt $MY_VLT && cd $MY_VLT"              # Open and go into the vault
+alias uvlt="cryfs-unmount $MY_VLT"                                  # Unmount (close) the vault
 ## Trash
-alias tr="cd ~/tmp/trash"                                           # Trash
-alias trls="ls ~/tmp/trash"                                         # List the files in the trash
+alias tr="cd $MY_TRASH"                                             # Trash
+alias trls="ls $MY_TRASH"                                           # List the files in the trash
 ## cd
 alias .="cd .."                                                     # Go 1 directory up
 alias ..="cd ../.."                                                 # Go 2 directories up
@@ -74,7 +81,7 @@ alias bt="bluetoothctl"                                             # Bluetoothc
 alias jbl="bluetoothctl -- connect B8:F6:53:E7:EC:77"               # Connect to the JBL Flip 5 speaker with bluetoothctl
 alias mkp="makepkg -si"                                             # Make package, resolve dependencies and install
 alias bup="borg create --stats --progress --compression=zstd,22\
-          --exclude='~/tmp/trash','~/.minecraft'"
+          -e '/home/akim/.minecraft'"                               # Make a backup with Borg (bup $MY_MNT/bups::Name ~)
 alias updm="pls reflector --protocol https --latest 30 --sort rate\
            --verbose --save /etc/pacman.d/mirrorlist"               # Update the mirror list with reflector
 alias pp="prettyping"                                               # An alternative for ping
@@ -93,30 +100,30 @@ alias cf="cpufetch"                                                 # Neofetch f
 alias bon="cbonsai -li"                                             # Watch ASCII bonsai grow in real time
 alias fl="figlet"                                                   # Display big ascii chars
 alias lol="lolcat"                                                  # Make text colored as rainbow
-alias work="genact"                                                 # Generates random acivity
+alias work="genact"                                                 # Generates random activity
 alias hack="cmatrix"                                                # Matrix
 alias tetris="bastet"                                               # CLI tetris
 
 # Quick edit
 ## Configs
-alias zenv="$EDITOR ~/.config/zsh/.zshenv"                          # Edit the .zshenv config file alias
-alias zrc="$EDITOR ~/.config/zsh/.zshrc"                            # Edit the zsh config file
-alias trc="$EDITOR ~/.config/taskwarrior/taskrc"                    # Edit the Taskwarrior config file
-alias arc="$EDITOR ~/.config/alacritty/alacritty.yml"               # Edit the Alacritty config file
-alias prc="$EDITOR ~/.config/picom/picom.conf"                      # Edit the Picom (compositor) config file
-alias xrc="$EDITOR ~/.config/X11/xinitrc"                           # Edit the xinitrc
-alias vrc="$EDITOR ~/.config/vim/vimrc"                             # Edit the vim config file
-alias nvrc="$EDITOR ~/.config/nvim/init.lua"                        # Edit the neovim config file
+alias zenv="$EDITOR $XDG_CONFIG_HOME/zsh/.zshenv"                   # Edit the .zshenv config file alias
+alias zrc="$EDITOR $XDG_CONFIG_HOME/zsh/.zshrc"                     # Edit the zsh config file
+alias trc="$EDITOR $XDG_CONFIG_HOME/taskwarrior/taskrc"             # Edit the Taskwarrior config file
+alias arc="$EDITOR $XDG_CONFIG_HOME/alacritty/alacritty.yml"        # Edit the Alacritty config file
+alias prc="$EDITOR $XDG_CONFIG_HOME/picom/picom.conf"               # Edit the Picom (compositor) config file
+alias xrc="$EDITOR $XDG_CONFIG_HOME/X11/xinitrc"                    # Edit the xinitrc
+alias vrc="$EDITOR $XDG_CONFIG_HOME/vim/vimrc"                      # Edit the vim config file
+alias nvrc="$EDITOR $XDG_CONFIG_HOME/nvim/init.lua"                 # Edit the neovim config file
 ## Hotkeys
-alias hk="$EDITOR ~/.config/sxhkd/sxhkdrc"                          # Edit the hotkeys (sxhkd)
+alias hk="$EDITOR $XDG_CONFIG_HOME/sxhkd/sxhkdrc"                   # Edit the hotkeys (sxhkd)
 alias rhk="pkill sxhkd && sxhkd &"                                  # Restart the hotkey daemon
 ## DWM
-alias drc="pushd ~/.config/dwm && \
-          $EDITOR ~/.config/dwm/config.def.h"                       # Edit the DWM config file
-alias dsrc="$EDITOR ~/.config/dwm/dwm.c"                            # Edit the DWM source code
-alias cdwm="cd ~/.config/dwm"                                       # Go to DWM config directory
-alias cmpd="\rm -f ~/.config/dwm/config.h && \rm \
-           -f ~/.config/dwm/patches.h && doas make install"         # Compile DWM
+alias drc="pushd $XDG_CONFIG_HOME/dwm && \
+          $EDITOR $XDG_CONFIG_HOME/dwm/config.def.h"                # Edit the DWM config file
+alias dsrc="$EDITOR $XDG_CONFIG_HOME/dwm/dwm.c"                     # Edit the DWM source code
+alias cdwm="cd $XDG_CONFIG_HOME/dwm"                                # Go to DWM config directory
+alias cmpd="\rm -f $XDG_CONFIG_HOME/dwm/config.h && \rm \
+           -f $XDG_CONFIG_HOME/dwm/patches.h && doas make install"  # Compile DWM
 
 # Application specific shortcuts
 ## Taskwarrior
@@ -158,6 +165,7 @@ alias gcln="git clone"                                              # Clone a re
 alias gco="git checkout"                                            # Checkout a branch
 alias glog="git log"                                                # Show the log of commits
 alias gdif="git diff"                                               # Compare changes
+alias gst="git status"                                              # Status
 ## NetworkManager (nmcli)
 ### INFO: to connect to a network that requires a redirect page,
 ### try 192.168.1.1 in the browser (most common default address)
@@ -167,21 +175,21 @@ alias wifi="nmcli device wifi list"                                 # List avail
 alias wifioff="nmcli device wifi connect"                           # Turn off wifi
 alias wifisc="nmcli device wifi rescan"                             # Rescan wifi networks
 ## EPQ
-alias alog="python3.10 ~/dox/cs/epq/activity.py"                    # Activity log
+alias alog="python3.10 $MY_CS/epq/activity.py"                      # Activity log
 
 # Shortcuts & substitutions for standard programs
 alias pls="doas"                                                    # Execute a command as root
 alias cat="bat"                                                     # Fancier version of cat
-alias rm="trash"                                                    # Move a file to ~/tmp/trash instead of deleting it
+alias rm="trash"                                                    # Move a file to $MY_TRASH instead of deleting it
 alias mkdir="mkdir -p"                                              # Create parent directories as needed
 alias ls="lsd -ALlhF 2>/dev/null"                                   # List files with fancier ls and hide any error messages
 alias lsr="lsd -ALlhF --tree --depth=2 2>/dev/null"                 # List a tree of the given directory and its subdirectories
 alias lsg="ls | grep"                                               # List only files matching a given pattern
 alias c="clear"                                                     # Clear the screen
 alias g="grep"                                                      # Grep
-alias cd="source $HOME/.local/bin/cd"                               # Run ls every time a directory is changes
+alias cd="source $MY_RPS/bin/cd"                                    # Run ls every time directory is changed (built-in shell commands have to be overwritten by aliases)
 alias pd="pushd"                                                    # Push directory
-alias pop="popd"                                                    # Pop directoty
+alias pop="popd"                                                    # Pop directory
 alias rb="reboot"                                                   # Reboot
 alias po="poweroff"                                                 # Turn off the computer
 alias sd="shutdown now"                                             # Turn off the computer
@@ -272,7 +280,7 @@ compinit
 ###########################
 
 # Lines configured by zsh-newuser-install
-HISTFILE=~/tmp/.histfile
+HISTFILE=$XDG_CACHE_HOME/.histfile
 HISTSIZE=10000
 SAVEHIST=10000
 setopt autocd extendedglob nomatch
