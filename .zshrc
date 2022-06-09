@@ -165,6 +165,7 @@ alias gcln="git clone"                                              # Clone a re
 alias gco="git checkout"                                            # Checkout a branch
 alias glog="git log"                                                # Show the log of commits
 alias gdif="git diff"                                               # Compare changes
+alias gdt="git difftool"                                            # Better diff
 alias gst="git status"                                              # Status
 ## NetworkManager (nmcli)
 ### INFO: to connect to a network that requires a redirect page,
@@ -180,14 +181,12 @@ alias alog="python3.10 $MY_CS/epq/activity.py"                      # Activity l
 # Shortcuts & substitutions for standard programs
 alias pls="doas"                                                    # Execute a command as root
 alias cat="bat"                                                     # Fancier version of cat
-alias rm="trash"                                                    # Move a file to $MY_TRASH instead of deleting it
 alias mkdir="mkdir -p"                                              # Create parent directories as needed
 alias ls="lsd -ALlhF 2>/dev/null"                                   # List files with fancier ls and hide any error messages
 alias lsr="lsd -ALlhF --tree --depth=2 2>/dev/null"                 # List a tree of the given directory and its subdirectories
 alias lsg="ls | grep"                                               # List only files matching a given pattern
 alias c="clear"                                                     # Clear the screen
 alias g="grep"                                                      # Grep
-alias cd="source $MY_RPS/bin/cd"                                    # Run ls every time directory is changed (built-in shell commands have to be overwritten by aliases)
 alias pd="pushd"                                                    # Push directory
 alias pop="popd"                                                    # Pop directory
 alias rb="reboot"                                                   # Reboot
@@ -205,6 +204,10 @@ alias cmp="doas make install"                                       # Compile
 alias mk="doas make install"                                        # Same as cmp
 alias login="[[ $(fgconsole 2>/dev/null) == 1 ]] &&\
             exec startx $XDG_CONFIG_HOME/X11/xinitrc -- vt1 "       # Login to a graphical environment from console
+## Scripts
+alias cd="source $MY_RPS/bin/cd"                                    # Run ls every time directory is changed
+alias nvim="source $MY_RPS/bin/edit"                                # Automatically prompt sudo if needed
+alias rm="trash"                                                    # Move a file to $MY_TRASH instead of deleting it
 ## Monitor the performance
 alias top="bpytop"                                                  # Fancier top
 alias gtop="nvtop"                                                  # Monitor the Nvidia GPU usage
