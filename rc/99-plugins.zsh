@@ -30,6 +30,10 @@ ZSH_AUTOSUGGEST_STRATEGY=(history completion)
 
 # Substring search
 source $ZDOTDIR/plugins/zsh-history-substring-search/zsh-history-substring-search.plugin.zsh
-
 bindkey -M vicmd 'k' history-substring-search-up
 bindkey -M vicmd 'j' history-substring-search-down
+
+
+# Marks
+FZF_MARKS_FILE="$XDG_CONFIG_HOME/.fzf-marks"
+source $ZDOTDIR/plugins/fzf-marks/fzf-marks.plugin.zsh

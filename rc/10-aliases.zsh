@@ -41,7 +41,8 @@ alias ...="cd ../../.."                                             # Go 3 direc
 alias ....="cd ../../../.."                                         # Go 4 directories up
 alias .....="cd ../../../../.."                                     # Go 5 directories up
 
-# Shortcuts for non-standard programs
+
+# Shortcuts for external programs
 alias o="xdg-open"                                                  # Open a file with a default app
 alias mimedef="xdg-mime query default"                              # Find out what default app is used for a mime type [mime/type]
 alias mimefile="xdg-mime query filetype"                            # Find out the mime type of a file [file.ext]
@@ -59,6 +60,7 @@ alias updm="pls reflector --protocol https --latest 30 --sort rate\
 alias pp="prettyping"                                               # An alternative for ping
 alias pch="prettyping archlinux.org"                                # Check ping
 alias pdf="setsid zathura"                                          # Open a pdf file
+alias j="fzm"                                                       # Jump to bookmark
 ## Wallpaper setter
 alias wpm="xwallpaper --maximize"                                   # Maximize wallpaper
 alias wpz="xwallpaper --zoom"                                       # Zoom wallpaper
@@ -102,6 +104,7 @@ alias dsrc="$EDITOR $XDG_CONFIG_HOME/dwm/dwm.c"                     # Edit the D
 alias cdwm="cd $XDG_CONFIG_HOME/dwm"                                # Go to DWM config directory
 alias cmpd="\rm -f $XDG_CONFIG_HOME/dwm/config.h && \rm \
            -f $XDG_CONFIG_HOME/dwm/patches.h && doas make install"  # Compile DWM
+
 
 # Application specific shortcuts
 ## Taskwarrior
@@ -156,6 +159,7 @@ alias wifisc="nmcli device wifi rescan"                             # Rescan wif
 ## EPQ
 alias alog="python3.10 $MY_CS/epq/activity.py"                      # Activity log
 
+
 # Shortcuts & substitutions for standard programs
 alias pls="doas"                                                    # Execute a command as root
 alias cat="bat"                                                     # Fancier version of cat
@@ -196,6 +200,7 @@ alias wtemp="watch --interval=0.5 -td 'sensors | grep Core'"        # Watch how 
 alias batt="cat /sys/class/power_supply/BAT0/capacity"              # Check battery charge percentage
 alias wbatt="watch -t cat /sys/class/power_supply/BAT0/capacity"    # Check battery charge percentage
 
+
 # Package managment
 ## Pacman
 alias pms="pacman -Ss"                                              # Search for packages with pacman
@@ -205,6 +210,7 @@ alias pmi="doas pacman -S"                                          # Install pa
 alias pmu="doas pacman -Syu"                                        # Update the system with pacman
 ## Paru
 alias upaur="paru -Sua"                                             # Upgrade only AUR packages
+
 
 # XDG
 alias wget="wget --hsts-file='$XDG_CACHE_HOME/wget-hsts'"
