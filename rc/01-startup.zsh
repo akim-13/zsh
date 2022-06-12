@@ -9,14 +9,13 @@ paleofetch --recache &&
 
 (echo -n "            Home : " && ls $HOME -A | wc -l) | figlet | lolcat &&
 
-# colorscript -r &&
+colorscript -r &&
 
 # Let lsd calculate the folder sizes in the background
 (lsd -AlhF >/dev/null 2>&1 &) &&
 
 # Enable the starship prompt
 eval "$(starship init zsh)"
-
 # Set a win title using the starship prompt
 function set_win_title(){
     echo -ne "\033]0; Alacritty: $PWD \007"
